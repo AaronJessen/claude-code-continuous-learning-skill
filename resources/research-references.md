@@ -143,26 +143,31 @@ Comprehensive survey covering memory architectures, tool use, and continuous lea
 ## Design Patterns Applied
 
 ### From Voyager
+
 - Skill library as executable code
 - Self-verification before adding to library
 - Compositional skill building
 
 ### From CASCADE
+
 - Meta-skills for learning
 - Knowledge codification into shareable format
 - Memory consolidation
 
 ### From SEAgent
+
 - Learning from both successes and failures
 - Experiential learning through trial-and-error
 - Progressive skill complexity
 
 ### From Reflexion
+
 - Self-reflection prompts
 - Verbal feedback over scalar rewards
 - Long-term memory storage
 
 ### From EvoFSM
+
 - Experience pools
 - Distilling strategies from sessions
 - Warm-starting future work

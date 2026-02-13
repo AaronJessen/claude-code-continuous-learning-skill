@@ -23,33 +23,33 @@ allowed-tools:
 
 # Continuous Learning Skill
 
-You are a continuous learning system that extracts reusable knowledge from work sessions and 
+You are a continuous learning system that extracts reusable knowledge from work sessions and
 codifies it into new Claude Code skills. This enables autonomous improvement over time.
 
 ## Core Principle: Skill Extraction
 
-When working on tasks, continuously evaluate whether the current work contains extractable 
-knowledge worth preserving. Not every task produces a skill—be selective about what's truly 
+When working on tasks, continuously evaluate whether the current work contains extractable
+knowledge worth preserving. Not every task produces a skill—be selective about what's truly
 reusable and valuable.
 
 ## When to Extract a Skill
 
 Extract a skill when you encounter:
 
-1. **Non-obvious Solutions**: Debugging techniques, workarounds, or solutions that required 
-   significant investigation and wouldn't be immediately apparent to someone facing the same 
+1. **Non-obvious Solutions**: Debugging techniques, workarounds, or solutions that required
+   significant investigation and wouldn't be immediately apparent to someone facing the same
    problem.
 
-2. **Project-Specific Patterns**: Conventions, configurations, or architectural decisions 
+2. **Project-Specific Patterns**: Conventions, configurations, or architectural decisions
    specific to this codebase that aren't documented elsewhere.
 
-3. **Tool Integration Knowledge**: How to properly use a specific tool, library, or API in 
+3. **Tool Integration Knowledge**: How to properly use a specific tool, library, or API in
    ways that documentation doesn't cover well.
 
-4. **Error Resolution**: Specific error messages and their actual root causes/fixes, 
+4. **Error Resolution**: Specific error messages and their actual root causes/fixes,
    especially when the error message is misleading.
 
-5. **Workflow Optimizations**: Multi-step processes that can be streamlined or patterns 
+5. **Workflow Optimizations**: Multi-step processes that can be streamlined or patterns
    that make common tasks more efficient.
 
 ## Skill Quality Criteria
@@ -66,6 +66,7 @@ Before extracting, verify the knowledge meets these criteria:
 ### Step 1: Identify the Knowledge
 
 Analyze what was learned:
+
 - What was the problem or task?
 - What was non-obvious about the solution?
 - What would someone need to know to solve this faster next time?
@@ -76,6 +77,7 @@ Analyze what was learned:
 Before creating the skill, search the web for current information when:
 
 **Always search for:**
+
 - Technology-specific best practices (frameworks, libraries, tools)
 - Current documentation or API changes
 - Common patterns or solutions for similar problems
@@ -83,6 +85,7 @@ Before creating the skill, search the web for current information when:
 - Alternative approaches or solutions
 
 **When to search:**
+
 - The topic involves specific technologies, frameworks, or tools
 - You're uncertain about current best practices
 - The solution might have changed after January 2025 (knowledge cutoff)
@@ -90,12 +93,14 @@ Before creating the skill, search the web for current information when:
 - You want to verify your understanding is current
 
 **When to skip searching:**
+
 - Project-specific internal patterns unique to this codebase
 - Solutions that are clearly context-specific and wouldn't be documented
 - Generic programming concepts that are stable and well-understood
 - Time-sensitive situations where the skill needs to be created immediately
 
 **Search strategy:**
+
 ```
 1. Search for official documentation: "[technology] [feature] official docs 2026"
 2. Search for best practices: "[technology] [problem] best practices 2026"
@@ -105,11 +110,13 @@ Before creating the skill, search the web for current information when:
 ```
 
 **Example searches:**
+
 - "Next.js getServerSideProps error handling best practices 2026"
 - "Claude Code skill description semantic matching 2026"
 - "React useEffect cleanup patterns official docs 2026"
 
 **Integration with skill content:**
+
 - Add a "References" section at the end of the skill with source URLs
 - Incorporate best practices into the "Solution" section
 - Include warnings about deprecated patterns in the "Notes" section
@@ -123,8 +130,8 @@ Create a new skill with this structure:
 ---
 name: [descriptive-kebab-case-name]
 description: |
-  [Precise description including: (1) exact use cases, (2) trigger conditions like 
-  specific error messages or symptoms, (3) what problem this solves. Be specific 
+  [Precise description including: (1) exact use cases, (2) trigger conditions like
+  specific error messages or symptoms, (3) what problem this solves. Be specific
   enough that semantic matching will surface this skill when relevant.]
 author: [original-author or "Claude Code"]
 version: 1.0.0
@@ -136,7 +143,7 @@ date: [YYYY-MM-DD]
 ## Problem
 [Clear description of the problem this skill addresses]
 
-## Context / Trigger Conditions  
+## Context / Trigger Conditions
 [When should this skill be used? Include exact error messages, symptoms, or scenarios]
 
 ## Solution
@@ -164,12 +171,13 @@ The description field is critical for skill discovery. Include:
 - **Action phrases**: "Use when...", "Helps with...", "Solves..."
 
 Example of a good description:
+
 ```
 description: |
-  Fix for "ENOENT: no such file or directory" errors when running npm scripts 
-  in monorepos. Use when: (1) npm run fails with ENOENT in a workspace, 
-  (2) paths work in root but not in packages, (3) symlinked dependencies 
-  cause resolution failures. Covers node_modules resolution in Lerna, 
+  Fix for "ENOENT: no such file or directory" errors when running npm scripts
+  in monorepos. Use when: (1) npm run fails with ENOENT in a workspace,
+  (2) paths work in root but not in packages, (3) symlinked dependencies
+  cause resolution failures. Covers node_modules resolution in Lerna,
   Turborepo, and npm workspaces.
 ```
 
@@ -180,7 +188,7 @@ Save new skills to the appropriate location:
 - **Project-specific skills**: `.claude/skills/[skill-name]/SKILL.md`
 - **User-wide skills**: `~/.claude/skills/[skill-name]/SKILL.md`
 
-Include any supporting scripts in a `scripts/` subdirectory if the skill benefits from 
+Include any supporting scripts in a `scripts/` subdirectory if the skill benefits from
 executable helpers.
 
 ## Retrospective Mode
@@ -207,10 +215,10 @@ Use these prompts during work to identify extraction opportunities:
 
 When extracting skills, also consider:
 
-1. **Combining Related Knowledge**: If multiple related discoveries were made, consider 
+1. **Combining Related Knowledge**: If multiple related discoveries were made, consider
    whether they belong in one comprehensive skill or separate focused skills.
 
-2. **Updating Existing Skills**: Check if an existing skill should be updated rather than 
+2. **Updating Existing Skills**: Check if an existing skill should be updated rather than
    creating a new one.
 
 3. **Cross-Referencing**: Note relationships between skills in their documentation.
@@ -253,12 +261,14 @@ aren't showing in the browser console because they're server-side, and the actua
 in the terminal.
 
 **Step 1 - Identify the Knowledge**:
+
 - Problem: Server-side errors don't appear in browser console
 - Non-obvious aspect: Expected behavior for server-side code in Next.js
 - Trigger: Generic error page with empty browser console
 
 **Step 2 - Research Best Practices**:
 Search: "Next.js getServerSideProps error handling best practices 2026"
+
 - Found official docs on error handling
 - Discovered recommended patterns for try-catch in data fetching
 - Learned about error boundaries for server components
@@ -271,9 +281,9 @@ Search: "Next.js getServerSideProps error handling best practices 2026"
 ---
 name: nextjs-server-side-error-debugging
 description: |
-  Debug getServerSideProps and getStaticProps errors in Next.js. Use when: 
-  (1) Page shows generic error but browser console is empty, (2) API routes 
-  return 500 with no details, (3) Server-side code fails silently. Check 
+  Debug getServerSideProps and getStaticProps errors in Next.js. Use when:
+  (1) Page shows generic error but browser console is empty, (2) API routes
+  return 500 with no details, (3) Server-side code fails silently. Check
   terminal/server logs instead of browser for actual error messages.
 author: Claude Code
 version: 1.0.0
@@ -283,7 +293,7 @@ date: 2024-01-15
 # Next.js Server-Side Error Debugging
 
 ## Problem
-Server-side errors in Next.js don't appear in the browser console, making 
+Server-side errors in Next.js don't appear in the browser console, making
 debugging frustrating when you're looking in the wrong place.
 
 ## Context / Trigger Conditions
@@ -296,11 +306,11 @@ debugging frustrating when you're looking in the wrong place.
 1. Check the terminal where `npm run dev` is running—errors appear there
 2. For production, check server logs (Vercel dashboard, CloudWatch, etc.)
 3. Add try-catch with console.error in server-side functions for clarity
-4. Use Next.js error handling: return `{ notFound: true }` or `{ redirect: {...} }` 
+4. Use Next.js error handling: return `{ notFound: true }` or `{ redirect: {...} }`
    instead of throwing
 
 ## Verification
-After checking terminal, you should see the actual stack trace with file 
+After checking terminal, you should see the actual stack trace with file
 and line numbers.
 
 ## Notes
@@ -333,6 +343,7 @@ Invoke this skill immediately after completing a task when ANY of these apply:
 ### Explicit Invocation
 
 Also invoke when:
+
 - User says `/retrospective` to review the session
 - User says "save this as a skill" or similar
 - User asks "what did we learn?"
@@ -340,6 +351,7 @@ Also invoke when:
 ### Self-Check After Each Task
 
 After completing any significant task, ask yourself:
+
 - "Did I just spend meaningful time investigating something?"
 - "Would future-me benefit from having this documented?"
 - "Was the solution non-obvious from documentation alone?"

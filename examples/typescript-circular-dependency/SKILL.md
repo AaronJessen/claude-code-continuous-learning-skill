@@ -15,9 +15,9 @@ date: 2024-03-10
 
 ## Problem
 
-Circular dependencies occur when module A imports from module B, which imports 
-(directly or indirectly) from module A. TypeScript compiles successfully, but at 
-runtime, one of the imports evaluates to `undefined` because the module hasn't 
+Circular dependencies occur when module A imports from module B, which imports
+(directly or indirectly) from module A. TypeScript compiles successfully, but at
+runtime, one of the imports evaluates to `undefined` because the module hasn't
 finished initializing yet.
 
 ## Context / Trigger Conditions
@@ -73,16 +73,19 @@ npx tsc --listFiles | head -50
 Common circular dependency patterns:
 
 **Pattern A: Service-to-Service**
+
 ```
 services/userService.ts → services/orderService.ts → services/userService.ts
 ```
 
 **Pattern B: Type imports**
+
 ```
 types/user.ts → types/order.ts → types/user.ts
 ```
 
 **Pattern C: Index barrel files**
+
 ```
 components/index.ts → components/Button.tsx → components/index.ts
 ```
@@ -92,17 +95,19 @@ components/index.ts → components/Button.tsx → components/index.ts
 **Strategy 1: Extract Shared Dependencies**
 
 Before:
+
 ```typescript
 // userService.ts
 import { OrderService } from './orderService';
 export class UserService { ... }
 
-// orderService.ts  
+// orderService.ts
 import { UserService } from './userService';
 export class OrderService { ... }
 ```
 
 After:
+
 ```typescript
 // types/interfaces.ts (new file - no imports from services)
 export interface IUserService { ... }
@@ -119,7 +124,7 @@ export class UserService implements IUserService { ... }
 // orderService.ts
 export class OrderService {
   constructor(private userService: IUserService) {}
-  
+
   // Instead of importing UserService directly
 }
 
@@ -150,6 +155,7 @@ import type { User } from './userService';
 **Strategy 5: Restructure Barrel Files**
 
 Before (problematic):
+
 ```typescript
 // components/index.ts
 export * from './Button';
@@ -157,6 +163,7 @@ export * from './Modal';  // Modal imports Button from './index'
 ```
 
 After:
+
 ```typescript
 // components/Modal.tsx
 import { Button } from './Button';  // Direct import, not from index
@@ -199,6 +206,7 @@ module.exports = {
 **Problem**: `OrderService` is undefined when imported in `UserService`
 
 **Detection**:
+
 ```bash
 $ madge --circular src/
 Circular dependencies found!
@@ -220,7 +228,7 @@ export class UserService {
   constructor(private orderService: IOrderService) {}
 }
 
-// MODIFIED: src/services/orderService.ts  
+// MODIFIED: src/services/orderService.ts
 // No longer imports UserService
 export class OrderService implements IOrderService {
   async createOrder(userId: string): Promise<Order> { ... }

@@ -60,6 +60,7 @@ The hook injects a reminder on every prompt that tells Claude to evaluate whethe
 ### Automatic Mode
 
 The skill activates automatically when Claude Code:
+
 - Just completed debugging and discovered a non-obvious solution
 - Found a workaround through investigation or trial-and-error
 - Resolved an error where the root cause wasn't immediately apparent
@@ -110,8 +111,8 @@ Extracted skills are markdown files with YAML frontmatter:
 ---
 name: prisma-connection-pool-exhaustion
 description: |
-  Fix for PrismaClientKnownRequestError: Too many database connections 
-  in serverless environments (Vercel, AWS Lambda). Use when connection 
+  Fix for PrismaClientKnownRequestError: Too many database connections
+  in serverless environments (Vercel, AWS Lambda). Use when connection
   count errors appear after ~5 concurrent requests.
 author: Claude Code
 version: 1.0.0

@@ -44,6 +44,7 @@ The description field is critical—it determines when the skill surfaces during
 ## Quality Criteria for Skills
 
 When modifying or creating skills, ensure:
+
 - **Reusable**: Helps with future tasks, not just one instance
 - **Non-trivial**: Requires discovery, not just documentation lookup
 - **Specific**: Clear trigger conditions (exact error messages, symptoms)
